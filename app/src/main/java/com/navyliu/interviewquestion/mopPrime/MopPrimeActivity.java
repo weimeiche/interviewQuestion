@@ -24,7 +24,7 @@ public class MopPrimeActivity extends AppCompatActivity {
             public void run() {
 
                 String str = "猫扑素数有：";
-                for (int i = 1; i < 1000000; i++) {
+                for (int i = 1; i < Integer.MAX_VALUE; i++) {
                     if (isMopNumber(i)) {
                         if (isPrime3(i)) {
                             str = str + "," + i;
