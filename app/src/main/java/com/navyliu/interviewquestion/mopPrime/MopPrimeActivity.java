@@ -1,11 +1,14 @@
 package com.navyliu.interviewquestion.mopPrime;
 
+import android.content.ContentValues;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.navyliu.interviewquestion.R;
+
+import java.util.ArrayList;
 
 public class MopPrimeActivity extends AppCompatActivity {
 
@@ -19,16 +22,17 @@ public class MopPrimeActivity extends AppCompatActivity {
         textView = (TextView) this.findViewById(R.id.textview);
 
 
-        new Runnable(){
+        new Runnable() {
             @Override
             public void run() {
-
                 String str = "猫扑素数有：";
-                for (int i = 1; i < Integer.MAX_VALUE; i++) {
-                    if (isMopNumber(i)) {
-                        if (isPrime3(i)) {
-                            str = str + "," + i;
-                        }
+                ArrayList<Integer> primes = new ArrayList<Integer>();
+                primes.add(2);
+                primes.add(3);
+                for (int i = 5; i < Integer.MAX_VALUE; i = i + 2) {
+                    if (isPrime4(primes, i)) {
+                        primes.add(i);
+                        if (isMopNumber(i)) str = str + "," + i;
                     }
                 }
                 textView.setText(str);
@@ -71,7 +75,8 @@ public class MopPrimeActivity extends AppCompatActivity {
      * @return
      */
     private boolean isPrime2(int n) {
-        for (int i = 2; i <= Math.sqrt(n); i++) {
+        int sqrt = (int) Math.floor(Math.sqrt(n));
+        for (int i = 2; i <= sqrt; i++) {
             if (n % i == 0) {
                 return false;
             }
@@ -94,4 +99,36 @@ public class MopPrimeActivity extends AppCompatActivity {
         }
         return false;
     }
+
+    /**
+     * 如果是质数，一定不能被小于等于本身平方根的质数整除
+     *
+     * @param n
+     * @return
+     */
+    private boolean isPrime4(int[] prime, int n) {
+        int sqrt = (int) Math.floor(Math.sqrt(n));
+        for (int i = 0; i < prime.length; i++) {
+
+        }
+        return false;
+    }
+
+    /**
+     * 判断是否为素数
+     * 素数一定不能被小于平方根的素数整除
+     *
+     * @param primes
+     * @param n
+     * @return
+     */
+    private boolean isPrime4(ArrayList<Integer> primes, int n) {
+        int s = (int) Math.floor(Math.sqrt(n));
+        for (Integer i : primes) {
+            if (i > s) return true;
+            if (n % i == 0) return false;
+        }
+        return true;
+    }
+
 }

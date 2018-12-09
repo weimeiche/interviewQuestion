@@ -52,3 +52,21 @@
         }
         return false;
     }
+
+
+    /**
+     * 判断是否为素数
+     * 素数一定不能被小于平方根的素数整除
+     *
+     * @param primes
+     * @param n
+     * @return
+     */
+    private boolean isPrime4(ArrayList<Integer> primes, int n) {
+        int s = (int) Math.floor(Math.sqrt(n));
+        for (Integer i : primes) {
+            if (i > s) return true;
+            if (n % i == 0) return false;
+        }
+        return true;
+    }
