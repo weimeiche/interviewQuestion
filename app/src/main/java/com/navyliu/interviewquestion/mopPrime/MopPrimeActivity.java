@@ -29,7 +29,7 @@ public class MopPrimeActivity extends AppCompatActivity {
                 ArrayList<Integer> primes = new ArrayList<Integer>();
                 primes.add(2);
                 primes.add(3);
-                for (int i = 5; i < Integer.MAX_VALUE; i = i + 2) {
+                for (int i = 5; i < 100000; i = i + 2) {
                     if (isPrime4(primes, i)) {
                         primes.add(i);
                         if (isMopNumber(i)) str = str + "," + i;
@@ -49,7 +49,7 @@ public class MopPrimeActivity extends AppCompatActivity {
      */
     private boolean isMopNumber(int m) {
         if (m < 10) return m == 2;
-        return isMopNumber(m / 10) && (m % 10 == 3);
+        return (m % 10 == 3) && isMopNumber(m / 10);
     }
 
     /**

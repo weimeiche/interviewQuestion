@@ -3,4 +3,21 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+
+    <!-- 背景色  -->
+    <color name="theme_backgroud">#E8E8E8</color>
+    <!--主题列表点击效果-->
+    <color name="theme_light_backgroud">#c8c8c8</color>
+    <!--主题按钮字体颜色-->
+    <color name="theme_btn_font">#000000</color>
+    <!--主题字体颜色-->
+    <color name="theme_font_hint">#000000</color>
+    <!--主题字体颜色-->
+    <color name="theme_font">#000000</color>
+    <!--主题字体点击颜色效果-->
+    <color name="theme_font_hover">#ffff0000</color>
+    <!--主题可以点击的字体颜色-->
+    <color name="theme_click_txt">#3d88fb</color>
+
 </resources>

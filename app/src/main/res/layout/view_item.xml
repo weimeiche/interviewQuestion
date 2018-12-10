@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_listview"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp" />
+        android:layout_marginLeft="10dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:textColor="@color/txt_a_hover" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/textview"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/colorPrimary" />
 
 </RelativeLayout>
