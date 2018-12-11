@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.navyliu.interviewquestion.NumberOf1Between1AndN.NumberOf1Between1AndN;
 import com.navyliu.interviewquestion.mopPrime.MopPrimeActivity;
+import com.navyliu.interviewquestion.reverse_word.ReverseWordActivity;
 
 import java.util.ArrayList;
 
@@ -62,9 +63,15 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return;
         }
-        if (itemId.equals("contain_1_n")){
+        if (itemId.equals("contain_1_n")) {
             // 2.从1到n整数中1出现的次数
             Intent intent = new Intent(this, NumberOf1Between1AndN.class);
+            startActivity(intent);
+            return;
+        }
+        if (itemId.equals("word_inversion")) {
+            // 3.单词反转
+            Intent intent = new Intent(this, ReverseWordActivity.class);
             startActivity(intent);
             return;
         }

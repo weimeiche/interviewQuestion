@@ -20,6 +20,72 @@ public class ExampleUnitTest {
 
 
     @Test
+    public void word_reverse() {
+        String str = "i am a student.";
+        String reverse_str = reverseChar(str);
+        System.out.println("reverse char is:" + reverse_str);
+        System.out.println("reverse word is:" + reverseSentence(str));
+        System.out.println("reverse left 3 is:" + leftRotateStr(str, 3));
+    }
+
+
+    /**
+     * 旋转字符串
+     * ps：输入abcdefg 输出gfedcba
+     *
+     * @param str
+     * @return
+     */
+    public String reverseChar(String str) {
+        char[] chars = str.toCharArray();
+        for (int i = 0; i < (chars.length + 1) / 2; i++) {
+            char temp = chars[i];
+            chars[i] = chars[chars.length - i - 1];
+            chars[chars.length - i - 1] = temp;
+        }
+        return String.valueOf(chars);
+    }
+
+    /**
+     * 旋转单词，遇到空格作为一个单词结束
+     * ps：输入how are you 输出 woh era uoy
+     *
+     * @param sentence
+     * @return
+     */
+    public String reverseSentence(String sentence) {
+        if (sentence == null) return "";
+        String sentenceReverse = reverseChar(sentence);
+        String[] splitSentence = sentenceReverse.split(" ");
+        String resultStr = "";
+        for (String str : splitSentence) {
+            resultStr = resultStr + reverseChar(str) + " ";
+        }
+        return resultStr;
+    }
+
+    /**
+     * 左旋转N位到尾部
+     * ps：传入abcdefg，2 输出 cdefgab
+     * @param str
+     * @param index
+     * @return
+     */
+    public String leftRotateStr(String str, int index) {
+        if (str == null || index > str.length() || index < 0) return "";
+//        String leftStr = str.substring(0, index);
+//        String rightStr = str.substring(index);
+//        return rightStr + leftStr;
+        String[] strArr = {str.substring(0, index), str.substring(index)};
+        String tempStr = "";
+        for (String s : strArr) {
+            tempStr += reverseChar(s);
+        }
+        return reverseChar(tempStr);
+    }
+
+
+    @Test
     public void numberOf1Between1AndNTest() {
         int num = 546016;
         System.out.println(num + "中的1有" + numberOf1Between1AndN_solution1(num) + "个");
