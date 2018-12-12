@@ -1,14 +1,15 @@
 package com.navyliu.interviewquestion;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.navyliu.interviewquestion.NumberOf1Between1AndN.NumberOf1Between1AndN;
+import com.navyliu.interviewquestion.array_find.ArrayFind;
 import com.navyliu.interviewquestion.mopPrime.MopPrimeActivity;
 import com.navyliu.interviewquestion.reverse_word.ReverseWordActivity;
 import com.navyliu.interviewquestion.single_ton.SingleTonActivity;
@@ -20,11 +21,13 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recycler;
     private SpinnerAdapter spinnerAdapter;
 
-    private String[] spinnerId = {"mop_prime", "contain_1_n", "word_inversion", "single_ton"
-    , "ArrayFind"};
-    private String[] spinnerItem = {"1.猫扑素数有哪些", "2.从1到n整数中1出现的次数", "3.单词反转", "4.单例模式（SingleTon）"
-    , "5.二位数组中的查找"};
     private ArrayList<SpinnerBean> mlist = new ArrayList<SpinnerBean>();
+    private String[] spinnerId = {"mop_prime", "contain_1_n", "word_inversion", "single_ton"
+            , "ArrayFind"};
+    private String[] spinnerItem = {"1.猫扑素数有哪些", "2.从1到n整数中1出现的次数", "3.单词反转"
+            , "4.单例模式（SingleTon）", "5.二位数组中的查找"};
+    private Class<?>[] activityArr = {MopPrimeActivity.class, NumberOf1Between1AndN.class, ReverseWordActivity.class
+            , SingleTonActivity.class, ArrayFind.class};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,38 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void onItemClick(int position) {
-        String itemId = mlist.get(position).getItemId();
-        System.out.println("position = [" + position + "]" + itemId);
-        if (itemId.equals("mop_prime")) {
-            // 猫扑素数
-            Intent intent = new Intent(this, MopPrimeActivity.class);
-            startActivity(intent);
-            return;
-        }
-        if (itemId.equals("contain_1_n")) {
-            // 2.从1到n整数中1出现的次数
-            Intent intent = new Intent(this, NumberOf1Between1AndN.class);
-            startActivity(intent);
-            return;
-        }
-        if (itemId.equals("word_inversion")) {
-            // 3.单词反转
-            Intent intent = new Intent(this, ReverseWordActivity.class);
-            startActivity(intent);
-            return;
-        }
-        if (itemId.equals("single_ton")){
-            //4.单利模式
-            Intent intent = new Intent(this, SingleTonActivity.class);
-            startActivity(intent);
-            return;
-        }
-        try {
-            Intent intent = new Intent(this, Class.forName(itemId));
-            startActivity(intent);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        Intent intent = new Intent(this, activityArr[position]);
+        startActivity(intent);
     }
 
 }

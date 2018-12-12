@@ -20,6 +20,7 @@
         <activity android:name=".mopPrime.MopPrimeActivity" />
         <activity android:name=".NumberOf1Between1AndN.NumberOf1Between1AndN" />
         <activity android:name=".reverse_word.ReverseWordActivity" />
+        <activity android:name=".array_find.ArrayFind" />
     </application>
 
 </manifest>
