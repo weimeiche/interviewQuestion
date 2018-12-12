@@ -11,6 +11,7 @@ import android.view.View;
 import com.navyliu.interviewquestion.NumberOf1Between1AndN.NumberOf1Between1AndN;
 import com.navyliu.interviewquestion.mopPrime.MopPrimeActivity;
 import com.navyliu.interviewquestion.reverse_word.ReverseWordActivity;
+import com.navyliu.interviewquestion.single_ton.SingleTonActivity;
 
 import java.util.ArrayList;
 
@@ -19,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recycler;
     private SpinnerAdapter spinnerAdapter;
 
-    private String[] spinnerId = {"mop_prime", "contain_1_n", "word_inversion"};
-    private String[] spinnerItem = {"1.猫扑素数有哪些"
-            , "2.从1到n整数中1出现的次数"
-            , "3.单词反转"};
+    private String[] spinnerId = {"mop_prime", "contain_1_n", "word_inversion", "single_ton"
+    , "ArrayFind"};
+    private String[] spinnerItem = {"1.猫扑素数有哪些", "2.从1到n整数中1出现的次数", "3.单词反转", "4.单例模式（SingleTon）"
+    , "5.二位数组中的查找"};
     private ArrayList<SpinnerBean> mlist = new ArrayList<SpinnerBean>();
 
     @Override
@@ -75,7 +76,18 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return;
         }
-
+        if (itemId.equals("single_ton")){
+            //4.单利模式
+            Intent intent = new Intent(this, SingleTonActivity.class);
+            startActivity(intent);
+            return;
+        }
+        try {
+            Intent intent = new Intent(this, Class.forName(itemId));
+            startActivity(intent);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }

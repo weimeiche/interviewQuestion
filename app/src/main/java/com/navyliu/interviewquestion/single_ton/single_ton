@@ -1,0 +1,132 @@
+
+// 在Java设计模式中，单例模式相对来说是比较简单的一种构建模式。使用的场景在于：对于定义的一个类，
+// 在整个应用程序执行期间只有唯一的一个实例对象。如Android中常见的application对象。
+/**
+ * 通过单利模式，自行实例化并向这个系统提供这个单利实例的访问方法
+ *
+ * 根据此单一实例产生的时机不同（当然，都是指第一次，也是唯一一次产生此单一实例时）
+ * ，可以将其分为懒汉式、饿汉式和登记式
+ */
+
+// 懒汉式：其特点是延迟加载，即当需要用到此单一实例的时候，才去初始化此单一实例
+public class SingleTon{
+
+    // 静态实例化变量
+    private static SingleTon instance;
+    // 私有化构造函数
+    private SingleTon(){}
+    // 静态public方法，向整个应用提供单例获取方式
+    public static SingleTon getInstance(){
+        if (instance == null){
+            instance = new SingleTon();
+        }
+        return instance;
+    }
+}
+
+
+
+// 懒汉式线程安全写法
+public class SingleTon{
+
+    // 静态实例变量上加上volatile
+    private static volatile SingleTon instance;
+    // 私有化构造函数
+    private SingleTon(){}
+    // 双重检查锁
+    public static SingleTon getInstance(){
+        if (instance == null){
+            synchronized (SingleTon.class){
+                if (instance == null){
+                    instance = new SingleTon();
+                }
+            }
+        }
+        return instance;
+    }
+}
+
+
+// 饿汉式：应用中尚未需要用到此单一实例的时候即先实例化
+public class SingleTon{
+    // 静态实例变量，直接初始化
+    private static SingleTon instance = new SingleTon();
+    // 私有化构造函数
+    private SingleTon(){}
+    // 静态public方法，向整个应用提供单例获取方式
+    public static SingleTon getInstance(){
+        return instance;
+    }
+}
+
+
+
+
+
+// 登记式单例模式
+// 一般是通过一个专门的类对各单例模式的此单一实例进行管理和维护。
+// 通过map方式可以方便的实现此目的
+public class SingleTon {
+
+    private static Map sigleTonMap = new HashMap();
+
+    public static void main(String[] args) {
+        // 获取A类的单例
+        A a = (A) getInstance(A.class.getName());
+        // 获取B类的单例
+        B b = (B) getInstance(B.class.getName());
+    }
+
+    // 根据类型获取单例
+    public static Object getInstance(String className) {
+        // 判断singleTonMap中是否有此单例，有则取得后返回，无则添加单例后返回
+        if (!sigleTonMap.containsKey(className)) {
+            try {
+                sigleTonMap.put(className, Class.forName(className).newInstance());
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        return sigleTonMap.get(className);
+    }
+}
+
+class A {
+}
+
+class B {
+}
+
+
+
+
+// 懒汉单例模式中，对于多线程的安全可以通过常见的synchronize等方式实现线程安全，
+// 同时，可以通过Java静态内部类的方式实现
+
+/**
+ * 其主要原理为：Java中静态内部类可以访问其外部类的成员属性和方法，
+ * 同时，静态内部类只有当被调用的时候才开始首次被加载，
+ * 利用此特性，可以实现懒汉式，在静态内部类中静态初始化外部类的单一实例即可。
+ */
+public class SingleTon {
+
+    // 利用静态内部类特性实现外部类的单例
+    private static class SingleTonBuilder{
+        private static SingleTon singleTon = new SingleTon();
+    }
+
+    // 私有化构造方法
+    private SingleTon(){}
+
+    public static SingleTon getInstance(){
+        return SingleTonBuilder.singleTon;
+    }
+
+    public static void main(String[] args){
+        SingleTon instance = getInstance();
+    }
+}
