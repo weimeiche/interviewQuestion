@@ -11,6 +11,7 @@ import android.view.View;
 import com.navyliu.interviewquestion.NumberOf1Between1AndN.NumberOf1Between1AndN;
 import com.navyliu.interviewquestion.array_find.ArrayFind;
 import com.navyliu.interviewquestion.mopPrime.MopPrimeActivity;
+import com.navyliu.interviewquestion.replace_blank.ReplanceBlankActivity;
 import com.navyliu.interviewquestion.reverse_word.ReverseWordActivity;
 import com.navyliu.interviewquestion.single_ton.SingleTonActivity;
 
@@ -23,11 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<SpinnerBean> mlist = new ArrayList<SpinnerBean>();
     private String[] spinnerId = {"mop_prime", "contain_1_n", "word_inversion", "single_ton"
-            , "ArrayFind"};
+            , "ArrayFind", "ReplanceBlankActivity"};
     private String[] spinnerItem = {"1.猫扑素数有哪些", "2.从1到n整数中1出现的次数", "3.单词反转"
-            , "4.单例模式（SingleTon）", "5.二位数组中的查找"};
+            , "4.单例模式（SingleTon）", "5.二位数组中的查找", "6.替换空格"};
     private Class<?>[] activityArr = {MopPrimeActivity.class, NumberOf1Between1AndN.class, ReverseWordActivity.class
-            , SingleTonActivity.class, ArrayFind.class};
+            , SingleTonActivity.class, ArrayFind.class, ReplanceBlankActivity.class};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

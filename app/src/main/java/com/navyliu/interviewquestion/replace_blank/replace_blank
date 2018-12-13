@@ -1,0 +1,21 @@
+
+    @Test
+    public void replaceBlank() {
+        String str = "how are you";
+        System.out.println(replaceBlank1(str));
+        System.out.println(str.replaceAll(" ", "%02"));
+    }
+
+
+    private String replaceBlank1(String str) {
+        StringBuffer stringBuffer = new StringBuffer();
+        if (str == null || str.length() == 0) return null;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ' ') {
+                stringBuffer.append("%02");
+            } else {
+                stringBuffer.append(str.charAt(i));
+            }
+        }
+        return stringBuffer.toString();
+    }

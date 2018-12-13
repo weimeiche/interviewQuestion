@@ -20,6 +20,94 @@ public class ExampleUnitTest {
 
 
     @Test
+    public void replaceBlank() {
+        int[] array = {2, 3, 1, 0, 5, 2, 3};
+        int duplicate = duplicateNumber3(array);
+        System.out.println("重复的数字为: " + duplicate);
+    }
+
+    /**
+     * 方法一：
+     * 重排数组，然后遍历数组，如果第n个和第n+1个值相等，那么第n个值就是重复的数字
+     * <p>
+     * 冒泡排序
+     *
+     * @param array
+     * @return
+     */
+    private int intduplicateNumber1(int[] array) {
+        if (array == null || array.length <= 0) {
+            return -1;
+        }
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                if (array[i] > array[j]) {
+                    exchange(array, i, j);
+                }
+            }
+        }
+        
+        return -1;
+    }
+
+    /**
+     * 方法三 如果数组中的数字在0到n-1的范围内，那么这个重复的数字一定不等于角标
+     * 那么扫描数组，如果值和角标相等，扫描下一个值，
+     * 如果角标不等于值，将值和是对应的值进行替换
+     *
+     * @param array
+     * @return
+     */
+    private int duplicateNumber3(int[] array) {
+        // TODO Auto-generated method stub
+        if (array == null || array.length <= 0) {
+            return -1;
+        }
+        for (int i = 0; i < array.length; i++) { //判断输入数组的合法性
+            if (array[i] < 0 || array[i] >= array.length) {
+                return -1;
+            }
+        }
+        for (int i = 0; i < array.length; i++) {
+            while (i != array[i]) { //将数字与第m个位置上的数字交换
+                if (array[i] == array[array[i]]) { //重复数据
+                    return array[i];
+                }
+                 array = exchange(array, i, array[i]);
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 交换数组array中的第i位和第j位
+     *
+     * @param array
+     * @param i
+     * @param j
+     */
+    public int[] exchange(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+        return array;
+    }
+
+    private String replaceBlank1(String str) {
+        StringBuffer stringBuffer = new StringBuffer();
+        if (str == null || str.length() == 0) return null;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ' ') {
+                stringBuffer.append("%02");
+            } else {
+                stringBuffer.append(str.charAt(i));
+            }
+        }
+        return stringBuffer.toString();
+    }
+
+
+    @Test
     public void arrayFind() {
         int[][] array = {
                 {1, 2, 8, 9},
